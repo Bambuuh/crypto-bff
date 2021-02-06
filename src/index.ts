@@ -5,9 +5,9 @@ import * as definitions from './definitions'
 
 const typeDefs = gql`
   type Query {
-    coins: [${definitions.coin.name}]
-    icons: [${definitions.icon.name}]
-    history(assetId: String): [${definitions.history.name}]
+    getCoins: [${definitions.coin.name}]
+    getIcons: [${definitions.icon.name}]
+    getCoinHistory(assetId: String): [${definitions.history.name}]
   }
 
   ${definitions.coin.definition}
@@ -17,12 +17,10 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    coins: () => coinService.getCoins(),
-    icons: () => coinService.getIcons(),
-    history: (parent: any, data: { assetId: string }) => {
-      console.log(data)
-      return coinService.getHistory({ assetId: data.assetId })
-    },
+    getCoins: () => coinService.getCoins(),
+    getIcons: () => coinService.getIcons(),
+    getCoinHistory: (parent: any, data: { assetId: string }) =>
+      coinService.getHistory({ assetId: data.assetId }),
   },
 }
 

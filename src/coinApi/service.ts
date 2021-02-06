@@ -23,8 +23,8 @@ export async function getHistory({ assetId }: { assetId: string }) {
   console.log('RUNNING', assetId)
   var aYearAgo = new Date()
   aYearAgo.setFullYear(aYearAgo.getFullYear() - 1)
-  const url = `/v1/ohlcv/${assetId}/USD/history?period_id=1DAY&time_start=${aYearAgo.toISOString()}`
-  console.log('URL', url)
-  const { data } = await axiosClient.get(url)
+  const { data } = await axiosClient.get(
+    `/v1/ohlcv/${assetId}/USD/history?period_id=1DAY&time_start=${aYearAgo.toISOString()}`
+  )
   return data
 }

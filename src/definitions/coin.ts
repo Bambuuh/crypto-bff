@@ -17,5 +17,6 @@ export const definition = `
   volume_1day_usd: Int
   volume_1mth_usd: Int
   id_icon: String
+  price_usd: Float
 }
 `

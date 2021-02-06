@@ -20,11 +20,10 @@ export async function getIcons() {
 }
 
 export async function getHistory({ assetId }: { assetId: string }) {
-  console.log('RUNNING', assetId)
   var aYearAgo = new Date()
   aYearAgo.setFullYear(aYearAgo.getFullYear() - 1)
   const { data } = await axiosClient.get(
-    `/v1/ohlcv/${assetId}/USD/history?period_id=1DAY&time_start=${aYearAgo.toISOString()}`
+    `/v1/ohlcv/${assetId}/USD/history?period_id=1MTH&time_start=${aYearAgo.toISOString()}`
   )
   return data
 }

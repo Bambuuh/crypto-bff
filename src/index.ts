@@ -7,7 +7,7 @@ const typeDefs = gql`
   type Query {
     getCoins: [${definitions.coin.name}]
     getIcons: [${definitions.icon.name}]
-    getCoinHistory(assetId: String): [${definitions.history.name}]
+    getCoinHistory(assetId: String, period: String): [${definitions.history.name}]
   }
 
   ${definitions.coin.definition}
@@ -19,8 +19,8 @@ const resolvers = {
   Query: {
     getCoins: () => coinService.getCoins(),
     getIcons: () => coinService.getIcons(),
-    getCoinHistory: (parent: any, data: { assetId: string }) =>
-      coinService.getHistory({ assetId: data.assetId }),
+    getCoinHistory: (parent: any, data: { assetId: string; period: string }) =>
+      coinService.getHistory({ assetId: data.assetId, period: data.period }),
   },
 }
 

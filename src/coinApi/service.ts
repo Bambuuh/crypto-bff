@@ -60,14 +60,16 @@ function mapPeriod(period: string) {
 
 export async function getHistory({
   assetId,
+  compareAssetId,
   period,
 }: {
   assetId: string
+  compareAssetId: string
   period: string
 }) {
   const res = mapPeriod(period)
   const { data } = await axiosClient.get(
-    `/v1/ohlcv/${assetId}/USD/history?period_id=${res.period}&time_start=${res.start}`
+    `/v1/ohlcv/${assetId}/${compareAssetId}/history?period_id=${res.period}&time_start=${res.start}`
   )
   return data
 }
